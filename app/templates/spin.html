@@ -1,11 +1,12 @@
-<html>
-	<head>
-		<title>Spin</title>
-	</head>
+{% extends "layout.html" %}
+{% block body_content %}
+<h1>Results</h1>
 	<body>
-			<h1> Hello {{ spin.firstname }} {{ spin.lastname }} </h1>
-			<h1> Your Uniquie ID is: {{ spin.uniqueid }}</h1> 
-
-			<p>Prize: {{ spin.prize }} </p>
+		<h1> Account Details </h1>
+		<font size="5"> Name: {{ spin.firstname }} {{ spin.lastname }} </font>
+		<br>
+		<font size="5"> Uniquie ID: {{ spin.uniqueid }} </font>
+		<br><br>
+		<font size="7">Prize Won: {{ spin.prize }} </font>
 	</body>
-</html>
+{% endblock body_content %}

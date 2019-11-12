@@ -3,7 +3,6 @@ import string
 from random import randint
 
 def randomString(stringLength=5):
-    #Generate a random string of fixed length
     letters = string.ascii_uppercase
 
     return ''.join(random.choice(letters) for i in range(stringLength))

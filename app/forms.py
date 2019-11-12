@@ -2,9 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired, Length, ValidationError
 
-
-
-
 class Name(FlaskForm):
 	firstname = StringField('First Name: ',
 		validators = [

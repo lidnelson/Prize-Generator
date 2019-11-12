@@ -21,39 +21,30 @@ def randomString(stringLength=5):
 @app.route('/home', methods=['GET','POST'])
 def home():
 	form = Name()
-	prize_id =  randint(1,1000)
-	if 990<prize_id<=1000:
-		prize_name="You've won £1,000,000"
-	elif 975<prize_id<=990:
-		prize_name="you've won £250,000"
-	elif 955<prize_id<=975:
-		prize_name="you've won £50,000"
-	elif 930<prize_id<=955:
-		prize_name="you've won £25,000"
-	elif 900<prize_id<=930:
-		prize_name="you've won £20,000"
-	elif 865<prize_id<=900:
-		prize_name="you've won £10,000"
-	elif 825<prize_id<=865:
-		prize_name="you've won £5,000"
-	elif 780<prize_id<=825:
-		prize_name="you've won £1,000"
-	elif 700<prize_id<=780:
-		prize_name="you've won £500"
-	elif 615<prize_id<=700:
-		prize_name="you've won £200"
-	elif 525<prize_id<=615:
-		prize_name="you've won £100"
-	elif 430<prize_id<=525:
-		prize_name="you've won £50"
-	elif 330<prize_id<=430:
-		prize_name="you've won £20"
-	elif 225<prize_id<=330:
-		prize_name="you've won £10"
-	elif 115<prize_id<=225:
-		prize_name="you've won £5"
-	else:
-		prize_name="you've won a pack of Haribos"
+	prizes = ['£1,000,000', '£500,000', '£500,000', '£250,000', '£250,000', '£250,000',
+        '£75,000', '£75,000', '£75,000', '£10,000', '£10,000', '£10,000', '£10,000',
+        '£5,000', '£5,000', '£5,000', '£5,000', '£5,000', '£1,000', '£1,000', '£1,000',
+        '£1,000', '£1,000', '£1,000', '£500', '£500', '£500', '£500', '£500', '£500',
+        '£500', '£500', '£200', '£200', '£200', '£200', '£200', '£200', '£200', '£200',
+        '£200', '£200', '£200', '£200', '£200', '£200', '£200', '£100', '£100', '£100',
+        '£100', '£100', '£100', '£100', '£100', '£100', '£100', '£100', '£100','£100',
+        '£100', '£100', '£100', '£100', '£100', '£100', '£100', '£100', '£100', '£50',
+        '£50', '£50', '£50', '£50','£50','£50', '£50','£50','£50','£50', '£50', '£50',
+        '£50', '£50', '£50', '£50', '£50','£50', '£50', '£50','£50','£50','£50','£50',
+        '£50', '£50','£50','£50','£50','£50', '£20', '£20', '£20', '£20', '£20', '£20',
+        '£20', '£20', '£20', '£20','£20','£20','£20','£20', '£20', '£20', '£20','£20',
+        '£20', '£20', '£20','£20','£20', '£10', '£10', '£10','£10','£10','£10','£10',
+        '£10', '£10', '£10','£10', '£10','£10','£10', '£10','£10','£10', '£10', '£10',
+        '£10', '£10', '£10', '£10','£10','£10','£10', '£5', '£5', '£5','£5', '£5','£5',
+        '£5','£5','£5', '£5', '£5', '£5', '£5','£5','£5', '£5', '£5', '£5','£5', '£5',
+        '£5', '£5', '£5', '£5', '£5', '£5','£5', '£5', '£5','£5','£5','Haribos', 'Haribos',
+        'Haribos', 'Haribos','Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos',
+        'Haribos', 'Haribos',  'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos',
+         'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos',
+          'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos', 'Haribos']
+
+	prize_name = (random.choice(prizes))
+	
 	randomnumbers = str(random_with_N_digits(3))
 	randomletters = str(randomString(5))
 	unique_id = randomnumbers + randomletters
