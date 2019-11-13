@@ -9,5 +9,3 @@ Werkzeug==0.16.0
 WTForms==2.2.1
 Flask-MySQL==1.4.0
 PyMySQL==0.9.3
-PyMySQL==0.9.3
-

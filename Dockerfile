@@ -1,12 +1,10 @@
-FROM ubuntu:16.04
-RUN apt-get update
-RUN apt-get install python3 -y
-RUN apt-get install python3-pip -y 
-RUN apt-get install mysql
+FROM python:2.7
+RUN apt update
+RUN apt install git -y
+RUN apt install python3 -y
+RUN apt install python3-pip -y
+WORKDIR /app
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
 COPY . .
-RUN pip3 install virtualenv
-RUN virtualenv venv
-RUN . /venv/bin/activate
-RUN chmod 777 ./requirements.txt
-RUN pip3 install -r ./requirements.txt 
 ENTRYPOINT ["/usr/bin/python3", "run.py"]
