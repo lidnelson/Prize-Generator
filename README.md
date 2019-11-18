@@ -1,11 +1,9 @@
 # Project Title
-
 QA Group Project 
 Aim of the project is to generate a web-based application which generates a unique User ID from a set of random generated numbers & letters, additionally the user is presented with a prize after they enter their full name.
 
 ## Getting Started
-
-These instructions will get you a copy of the project up and running live on a cloud server machine (AWS)
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system (AWS).
 
 ## Prerequisites
 Software needed & installation process.
@@ -25,7 +23,6 @@ Run mysql.sh which consists of all required process needed to be installed
 $ sh mysql.sh
 ```
 ### Manual Process
--------------------
 
 System Update
 ```
