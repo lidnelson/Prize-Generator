@@ -12,7 +12,7 @@ These instructions will get you a copy of the project up and running live on a c
 What things you need to install the software and how to install them
 
 ```
-Give examples
+MySQL Give examples
 ```
 
 ### Installing
