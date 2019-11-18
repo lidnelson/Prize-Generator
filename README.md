@@ -25,6 +25,8 @@ Run mysql.sh which consists of all required process needed to be installed
 $ sh mysql.sh
 ```
 ### Manual Process
+-------------------
+
 System Update
 ```
 $ sudo yum update -y
