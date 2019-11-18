@@ -17,18 +17,32 @@ MySQL Server
 ```
 $ sudo yum install mysql -y
 ```
+Docker
+```
+$ sudo amazon-linux-extas install docker
+$ sudo service docker start
+$ sudo usermod -aG docker ec2-user
+```
+Docker Compose
+```
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.21.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose > /dev/null
+$ sudo chmod +x /usr/local/bin/docker-compose
+```
+Git
+```
+$ sudo yum install git
+```
 
 ### Installing
 
 A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
+Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
 
 ```
-Give the example
+$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
+$ cd Prize-Generator
 ```
-
-And repeat
 
 ```
 until finished
@@ -36,11 +50,22 @@ until finished
 
 End with an example of getting some data out of the system or using it for a little demo
 
-## Running the tests
+## Deploying the application
 
-Explain how to run the automated tests for this system
+Run the following command to build the application using docker compose
+```
+$ docker-compose up -d --build
+```
+Check that the application has been successfully built without any erorrs
+```
+$ docker-compose logs app
+```
+View the application container and the the corresponding details
+```
+$ docker ps
+```
 
-### Break down into end to end tests
+### Viewing the application
 
 Explain what these tests test and why
 
