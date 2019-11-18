@@ -8,11 +8,14 @@ Aim of the project is to generate a web-based application which generates a uniq
 These instructions will get you a copy of the project up and running live on a cloud server machine (AWS)
 
 ### Prerequisites
-
-What things you need to install the software and how to install them
-
+Software needed & installation process.
+System Update
 ```
-MySQL Give examples
+$ sudo yum update -y
+```
+MySQL Server
+```
+$ sudo yum install mysql -y
 ```
 
 ### Installing
