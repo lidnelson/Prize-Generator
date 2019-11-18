@@ -9,6 +9,22 @@ These instructions will get you a copy of the project up and running live on a c
 
 ### Prerequisites
 Software needed & installation process.
+
+### Automatic Process
+System Update
+```
+$ sudo yum update -y
+```
+Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
+```
+$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
+$ cd Prize-Generator
+```
+Run mysql.sh which consists of all required process needed to be installed
+```
+$ sh mysql.sh
+```
+### Manual Process
 System Update
 ```
 $ sudo yum update -y
