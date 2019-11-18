@@ -7,7 +7,7 @@ Aim of the project is to generate a web-based application which generates a uniq
 
 These instructions will get you a copy of the project up and running live on a cloud server machine (AWS)
 
-### Prerequisites
+## Prerequisites
 Software needed & installation process.
 
 ### Automatic Process
