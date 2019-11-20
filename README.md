@@ -112,6 +112,10 @@ System Update
 ```
 $ sudo yum update -y
 ```
+Install Git
+```
+$ sudo yum install git
+```
 Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
 ```
 $ git clone -b https://github.com/lidnelson/Prize-Generator
