@@ -102,12 +102,6 @@ Copy and paste the code from the randomnumber_lambda.py file into the function c
 
 *Parameters that are not listed here should be kept at the default value*
 
-## Edit Files
-Rename the config file and remove the *"_sample"* from the file name
-
-Within the config file specify a SECRET KEY which is a string of length 30 that has both numbers and letters
-
-Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
 
 # EC2 Console
 SSH / Connect to your EC2 Instance
@@ -143,6 +137,13 @@ Import prize table into the newly created Prizes Database
 ```
 $ mysql -h [database endpoint] -P 3306 -u [database name] -p Prize < prizes.sql
 ```
+
+## Edit Files
+Rename the config file and remove the *"_sample"* from the file name
+
+Within the config file specify a SECRET KEY which is a string of length 30 that has both numbers and letters
+
+Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
 
 ### Deploying the application
 
