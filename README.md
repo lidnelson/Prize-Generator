@@ -3,7 +3,11 @@ QA Group Project
 Aim of the project is to generate a web-based application which generates a unique User ID from a set of random generated numbers & letters, additionally the user is presented with a prize after they enter their full name.
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system (AWS).
+These instructions will get you a copy of the project up and running and deployed on a live system (AWS).
+
+## Creating a AWS Account
+If you haven't got a AWS Account already, follow the link on how to create one.
+[How to create AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
 # Local Machine
 ### Prerequisites
