@@ -39,7 +39,7 @@ Ensure the following parameters are the same:
 
 **Page - (Configure Instance Details)** IAM role: EC2-Permissions
 
-**Page - (Add Tags)** Key: Name Value: EC2-Instance, or any name of your liking
+**Page - (Add Tags)** Key: Name Value: EC2-Instance, *or any name of your liking*
 
 **Configure Security Group** Assign a security group: create a **new** security group, **Security group name:** EC2-CONNECT-APP,   **Security group name:** EC2-CONNECT-APP 
 
@@ -75,18 +75,27 @@ these values.*
 You will need to create 3 lambda functions for this application to work
 
 **Lambda Function 1**
+
 **Basic information** Function name: randomprize
+
 **Basic information** Runtime: Python 3.7
+
 Copy and paste the code from the randomprize_lambda.py file into the function code
 
 **Lambda Function 2**
+
 **Basic information** Function name: randomletter
+
 **Basic information** Runtime: Python 3.7
+
 Copy and paste the code from the randomprize_letter.py file into the function code
 
 **Lambda Function 3**
+
 **Basic information** Function name: randomnumber
+
 **Basic information** Runtime: Python 3.7
+
 Copy and paste the code from the randomprize_number.py file into the function code
 
 *Parameters that are not listed here should be kept at the default value*
