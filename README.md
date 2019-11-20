@@ -108,6 +108,7 @@ Within the config file specify a SECRET KEY which is a string of length 30 that 
 Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
 
 # EC2 Console
+SSH / Connect to your EC2 Instance
 ### Prerequisites
 Software needed & installation process.
 
