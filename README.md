@@ -24,6 +24,7 @@ Ensure the following parameters are the same:
 
 **Page - (Review)** Role description: *Specify a description of your choice*
 
+*Parameters that are not listed here should be kept at the default value*
 
 ## EC2 Instance
 [Link to instructions on how to create an EC2 Instance](https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html)
@@ -38,51 +39,13 @@ Ensure the following parameters are the same:
 
 **Page - (Configure Instance Details)** IAM role: EC2-Permissions
 
-**Page - (Add Tags)** Key: Name Value: First or any name of your liking
+**Page - (Add Tags)** Key: Name Value: EC2-Instance, or any name of your liking
 
 **Configure Security Group** Assign a security group: create a **new** security group, **Security group name:** EC2-CONNECT-APP,   **Security group name:** EC2-CONNECT-APP 
 
 **Configure Security Group** Add new rules, Type: HTTP, MYSQL/Aurora. Source for both: 0.0.0.0/0 
 
-## Lambda Function
-Section will instruct you on how to create the lambda functions
-[Link to instructions on how to create a Lambda Function](https://docs.aws.amazon.com/lex/latest/dg/gs-bp-create-lambda-function.html)
-
-You will need to create 3 lambda functions for this application to work
-
-**Lambda Function 1**
-**Basic information** Function name: randomprize
-**Basic information** Runtime: Python 3.7
-Copy and paste the code from the randomprize_lambda.py file into the function code
-
-**Lambda Function 2**
-**Basic information** Function name: randomletter
-**Basic information** Runtime: Python 3.7
-Copy and paste the code from the randomprize_letter.py file into the function code
-
-**Lambda Function 3**
-**Basic information** Function name: randomnumber
-**Basic information** Runtime: Python 3.7
-Copy and paste the code from the randomprize_number.py file into the function code
-
-# EC2 Console
-### Prerequisites
-Software needed & installation process.
-
-System Update
-```
-$ sudo yum update -y
-```
-Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
-```
-$ git clone -b https://github.com/lidnelson/Prize-Generator
-$ cd Prize-Generator
-```
-Run mysql.sh which consists of all required process needed to be installed
-```
-$ sh mysql.sh
-```
-After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
+*Parameters that are not listed here should be kept at the default value*
 
 ## Creating Database
 [Link to instructions on how to create an RDS DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html)
@@ -102,37 +65,70 @@ these values.*
 
 **Additional connectivity configration, Publicly accessible:** No
 
-**VPC security group: Choose existing,** select the pre made VPC group you created earlier "EC2-CONNECT-APP"
+**VPC security group: Choose existing,** select the pre-made VPC group you created earlier "EC2-CONNECT-APP"
 
-*Parameters that are not listed should be kept at the default value*
+*Parameters that are not listed here should be kept at the default value*
 
-**AWS Console**
+## Lambda Function
+[Link to instructions on how to create a Lambda Function](https://docs.aws.amazon.com/lex/latest/dg/gs-bp-create-lambda-function.html)
+
+You will need to create 3 lambda functions for this application to work
+
+**Lambda Function 1**
+**Basic information** Function name: randomprize
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_lambda.py file into the function code
+
+**Lambda Function 2**
+**Basic information** Function name: randomletter
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_letter.py file into the function code
+
+**Lambda Function 3**
+**Basic information** Function name: randomnumber
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_number.py file into the function code
+
+*Parameters that are not listed here should be kept at the default value*
+
+## Edit Files
+Rename the config file and remove the *"_sample"* from the file name
+
+Within the config file specify a SECRET KEY which is a string of length 30 that has both numbers and letters
+
+Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
+
+# EC2 Console
+### Prerequisites
+Software needed & installation process.
+
+System Update
+```
+$ sudo yum update -y
+```
+Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
+```
+$ git clone -b https://github.com/lidnelson/Prize-Generator
+$ cd Prize-Generator
+```
+Run mysql.sh which consists of all required process needed to be installed
+```
+$ sh mysql.sh
+```
+After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
+.
+.
+.
 Create a database called Prizes
 ```
-$ mysql -h [mysql endpoint] -P 3306 -u [sql database name] -p
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p
 $ MySQL [(none)]> CREATE database Prizes;
-$ MySQL [(none)]> exit;
-```
-Create a database called Prizes
-```
-$ MySQL [(none)]> CREATE database Prizes;
-```
-Exit out of MySQL
-```
 $ MySQL [(none)]> exit;
 ```
 Import prize table into the newly created Prizes Database
 ```
-$ mysql -h [mysql endpoint] -P 3306 -u [sql database name] -p Prize < prizes.sql
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p Prize < prizes.sql
 ```
-
-### Edit Files
-Rename the config file and remove the *"_sample"* from the file name
-
-Within the config file specify a string of length 30 that has both numbers and letters included
-
-Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
-
 
 ### Deploying the application
 
@@ -156,7 +152,7 @@ Obtain the EC2 IPv4 Public IP, copy & paste into your web browser.
 
 To view your database, enter the following command into your CLI & enter your password upon request
 ```
-$ mysql -h [mysql endpoint] -P 3306 -u [sql database name] -p
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p
 ```
 Show databases
 ```
@@ -168,9 +164,8 @@ $ MySQL [(none)]> Use Prizes;
 ```
 View entries in database
 ```
-$ MySQL [(none)]> SELECT * FROM prizes;
+$ MySQL [(Prizes)]> SELECT * FROM prizes;
 ```
-
 
 ## Built With
 
@@ -181,4 +176,3 @@ $ MySQL [(none)]> SELECT * FROM prizes;
 ## Authors
 
 * **Solomon Bada**
-* **Lydia Nelson**
