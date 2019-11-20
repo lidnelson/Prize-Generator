@@ -125,9 +125,11 @@ Run mysql.sh which consists of all required process needed to be installed
 $ sh mysql.sh
 ```
 After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
+
 .
 .
 .
+
 Create a database called Prizes
 ```
 $ mysql -h [database endpoint] -P 3306 -u [database name] -p
