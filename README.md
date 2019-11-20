@@ -45,6 +45,8 @@ Ensure the following parameters are the same:
 
 **Configure Security Group** Add new rules, Type: HTTP, MYSQL/Aurora. Source for both: 0.0.0.0/0 
 
+**Configure Security Group** Add new rule, Type: Custom TCP Rule, Port Range: 22, Source: 0.0.0.0/0 
+
 *Parameters that are not listed here should be kept at the default value*
 
 ## Creating Database
