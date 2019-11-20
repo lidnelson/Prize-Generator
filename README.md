@@ -7,75 +7,38 @@ These instructions will get you a copy of the project up and running and deploye
 
 ## Creating a AWS Account
 If you haven't got a AWS Account already, follow the link on how to create one.
+
 [How to create AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
-# Local Machine
+## Creating Database
+This section will guide you on how to create a database and link to it
+
+## IAM Roles
+This section will instruct you on how to setup the IAM roles
+
+## Lambda Function
+Section will instruct you on how to create the lambda functions
+
+
+# AWS Deployment
 ### Prerequisites
 Software needed & installation process.
-### Automatic Process
-System Update
-```
-$ sudo apt-get update -y
-```
-Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
-```
-$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
-$ cd Prize-Generator
-```
-Run mysql.sh which consists of all required process needed to be installed
-```
-$ sh mysql.sh
-```
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Move into the the Prize-Generator directory
-```
-$ cd Prize-Generator
-$ sudo apt-get install python3 -y
-$ sudo apt-get install python3-pip -y
-$ sudo apt-get install python-virtualenv
-$ python3 -m venv venv
-$ . venv/bin/activate
-$ pip3 install -r requirements.txt
-
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Deploying the application
-
-Run the following command to build the application
-
-```
-$ cd ..
-$ export FLASK_APP=run.py
-$ export FLASK_ENV=development
-$ flask run
-```
-### Viewing the application
-
-Navigate to http://localhost:5000/
-
-# AWS
-### Prerequisites
-Software needed & installation process.
-### Automatic Process
 System Update
 ```
 $ sudo yum update -y
 ```
 Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
 ```
-$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
+$ git clone -b https://github.com/lidnelson/Prize-Generator
 $ cd Prize-Generator
 ```
 Run mysql.sh which consists of all required process needed to be installed
 ```
 $ sh mysql.sh
 ```
+After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
+
 ## Deploying the application
 
 Run the following command to build the application using docker compose
@@ -92,7 +55,7 @@ $ docker ps
 ```
 ### Viewing the application
 
-Navigate to http://{{ External IP address }}/
+Obtain the EC2 IPv4 Public IP, copy & paste into your web browser.
 
 ## Built With
 
