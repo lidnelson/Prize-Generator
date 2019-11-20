@@ -15,10 +15,15 @@ This section will instruct you on how to setup the IAM roles
 [Create an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
 
 **Create role** Select type of trusted entity: AWS service
+
 **Create role** Choose the service that will use this role: EC2
+
 **Attach permissions policies** Search for "AmazonRDSDataFullAccess", "AmazonRDSFullAccess", "AWSLambdaFullAccess", and make sure the checkbox is highlighted before moving on to next page
+
 **Add tags** Key: Name, Value: EC2-Access
+
 **Review** Role name: EC2-Permissions
+
 **Review** Role description: *Specify a description of your choice*
 
 Ensure these parameters are the same:
@@ -35,10 +40,15 @@ This section will instruct you on how to create an EC2 instance.
 Ensure these parameters are the same:
 
 Amazon Machine Image (AMI): Select the first option
+
 Instance type: t2.micro
+
 **Configure Instance Details** Auto-assign public IP: Enable
+
 **Configure Instance Details** IAM role: EC2-Permissions
+
 **Add Tags** Key: Name Value: First or any name of your liking
+
 **Configure Security Group** Add new rules, Type: HTTP, MYSQL/Aurora. Source for both: 0.0.0.0/0 
 
 # AWS
@@ -67,11 +77,18 @@ This section will guide you on how to create a database and link to it
 Ensure these parameters are the same:
 
 Engine type: MySQL
+
 Version: MySQL 5.7.26
+
 Templates: Free tier
-Settings, DB instance identifier // Master username // Master password: mysqldatabase or your own choice, ensure to note down these values.
+
+Settings, DB instance identifier // Master username // Master password: mysqldatabase or your own choice, ensure to note down 
+these values.
+
 Virtual Private Cloud (VPC): Default VPC
+
 Additional connectivity configration, Publicly accessible: No
+
 VPC security group: Choose existing, select the pre made VPC group you created earlier "EC2-CONNECT-APP"
 
 Parameters that are not listed should be kept at the default value
