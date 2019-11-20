@@ -1,57 +1,71 @@
-# Project Title
-QA Group Project 
+# QA Group Project
 Aim of the project is to generate a web-based application which generates a unique User ID from a set of random generated numbers & letters, additionally the user is presented with a prize after they enter their full name.
 
 ## Getting Started
-These instructions will get you a copy of the project up and running and deployed on a live AWS system.
+This README will guide you on how to get a copy of the project up, running and deployed on a live AWS system.
 
 ## Creating a AWS Account
-If you haven't got a AWS Account already, follow the link on how to create one.
-[How to create AWS Account](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
-
+[If you haven't got a AWS Account already, follow the link on how to create one.](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
 ## IAM Roles
-This section will instruct you on how to setup the IAM roles
-[Create an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
+[Link to instructions on how to create an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
 
-**Create role** Select type of trusted entity: AWS service
+Ensure the following parameters are the same:
 
-**Create role** Choose the service that will use this role: EC2
+**Page - (Create role)** Select type of trusted entity: AWS service
 
-**Attach permissions policies** Search for "AmazonRDSDataFullAccess", "AmazonRDSFullAccess", "AWSLambdaFullAccess", and make sure the checkbox is highlighted before moving on to next page
+**Page - (Create role)** Choose the service that will use this role: EC2
 
-**Add tags** Key: Name, Value: EC2-Access
+**Page - (Attach permissions policies)** Search for "AmazonRDSDataFullAccess", "AmazonRDSFullAccess", "AWSLambdaFullAccess", and make sure the checkbox is highlighted before moving on to next page
 
-**Review** Role name: EC2-Permissions
+**Page - (Add tags)** Key: Name, Value: EC2-Access
 
-**Review** Role description: *Specify a description of your choice*
+**Page - (Review)** Role name: EC2-Permissions
 
-Ensure these parameters are the same:
-
-## Lambda Function
-Section will instruct you on how to create the lambda functions
-[Create a Lambda Function](https://docs.aws.amazon.com/lex/latest/dg/gs-bp-create-lambda-function.html)
+**Page - (Review)** Role description: *Specify a description of your choice*
 
 
 ## EC2 Instance
-This section will instruct you on how to create an EC2 instance.
-[Create an EC2 Instance](https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html)
+[Link to instructions on how to create an EC2 Instance](https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html)
 
-Ensure these parameters are the same:
+Ensure the following parameters are the same:
 
-Amazon Machine Image (AMI): Select the first option
+**Page - (Amazon Machine Image (AMI))**: Select the first option
 
-Instance type: t2.micro
+**Page - (Instance type)**: t2.micro
 
-**Configure Instance Details** Auto-assign public IP: Enable
+**Page - (Configure Instance Details)** Auto-assign public IP: Enable
 
-**Configure Instance Details** IAM role: EC2-Permissions
+**Page - (Configure Instance Details)** IAM role: EC2-Permissions
 
-**Add Tags** Key: Name Value: First or any name of your liking
+**Page - (Add Tags)** Key: Name Value: First or any name of your liking
+
+**Configure Security Group** Assign a security group: create a **new** security group, **Security group name:** EC2-CONNECT-APP,   **Security group name:** EC2-CONNECT-APP 
 
 **Configure Security Group** Add new rules, Type: HTTP, MYSQL/Aurora. Source for both: 0.0.0.0/0 
 
-# AWS
+## Lambda Function
+Section will instruct you on how to create the lambda functions
+[Link to instructions on how to create a Lambda Function](https://docs.aws.amazon.com/lex/latest/dg/gs-bp-create-lambda-function.html)
+
+You will need to create 3 lambda functions for this application to work
+
+**Lambda Function 1**
+**Basic information** Function name: randomprize
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_lambda.py file into the function code
+
+**Lambda Function 2**
+**Basic information** Function name: randomletter
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_letter.py file into the function code
+
+**Lambda Function 3**
+**Basic information** Function name: randomnumber
+**Basic information** Runtime: Python 3.7
+Copy and paste the code from the randomprize_number.py file into the function code
+
+# EC2 Console
 ### Prerequisites
 Software needed & installation process.
 
@@ -71,28 +85,28 @@ $ sh mysql.sh
 After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
 
 ## Creating Database
-This section will guide you on how to create a database and link to it
-[Create an RDS DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html)
+[Link to instructions on how to create an RDS DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html)
 
 Ensure these parameters are the same:
 
-Engine type: MySQL
+**Engine type:** MySQL
 
-Version: MySQL 5.7.26
+**Version:** MySQL 5.7.26
 
-Templates: Free tier
+**Templates:** Free tier
 
-Settings, DB instance identifier // Master username // Master password: mysqldatabase or your own choice, ensure to note down 
-these values.
+**Settings, DB instance identifier // Master username // Master password:** sqldatabase *or your own choice, ensure to note down 
+these values.*
 
-Virtual Private Cloud (VPC): Default VPC
+**Virtual Private Cloud (VPC):** Default VPC
 
-Additional connectivity configration, Publicly accessible: No
+**Additional connectivity configration, Publicly accessible:** No
 
-VPC security group: Choose existing, select the pre made VPC group you created earlier "EC2-CONNECT-APP"
+**VPC security group: Choose existing,** select the pre made VPC group you created earlier "EC2-CONNECT-APP"
 
-Parameters that are not listed should be kept at the default value
+*Parameters that are not listed should be kept at the default value*
 
+**AWS Console**
 Create a database called Prizes
 ```
 $ mysql -h [mysql endpoint] -P 3306 -u [sql database name] -p
@@ -113,9 +127,12 @@ $ mysql -h [mysql endpoint] -P 3306 -u [sql database name] -p Prize < prizes.sql
 ```
 
 ### Edit Files
+Rename the config file and remove the *"_sample"* from the file name
 
-Edit config file and specify a random 18 character secret key
-import the database uri in a similar fashion to ..
+Within the config file specify a string of length 30 that has both numbers and letters included
+
+Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
+
 
 ### Deploying the application
 
