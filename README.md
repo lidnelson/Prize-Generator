@@ -5,7 +5,7 @@ Aim of the project is to generate a web-based application which generates a uniq
 This README will guide you on how to get a copy of the project up, running and deployed on a live AWS system.
 
 ## Creating a AWS Account
-[If you haven't got a AWS Account already, follow the link on how to create one.](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+[If you haven't got a AWS Account already, follow this link on how to create one.](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
 
 ## IAM Roles
 [Link to instructions on how to create an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
