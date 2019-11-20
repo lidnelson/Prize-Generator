@@ -88,7 +88,7 @@ Copy and paste the code from the randomprize_lambda.py file into the function co
 
 **Basic information** Runtime: Python 3.7
 
-Copy and paste the code from the randomprize_letter.py file into the function code
+Copy and paste the code from the randomletter_lambda.py file into the function code
 
 **Lambda Function 3**
 
@@ -96,7 +96,7 @@ Copy and paste the code from the randomprize_letter.py file into the function co
 
 **Basic information** Runtime: Python 3.7
 
-Copy and paste the code from the randomprize_number.py file into the function code
+Copy and paste the code from the randomnumber_lambda.py file into the function code
 
 *Parameters that are not listed here should be kept at the default value*
 
