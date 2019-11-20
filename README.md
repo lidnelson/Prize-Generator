@@ -1,78 +1,148 @@
-# Project Title
-QA Group Project 
+# QA Group Project
 Aim of the project is to generate a web-based application which generates a unique User ID from a set of random generated numbers & letters, additionally the user is presented with a prize after they enter their full name.
 
 ## Getting Started
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system (AWS).
+This README will guide you on how to get a copy of the project up, running and deployed on a live AWS system.
 
-# Local Machine
+## Creating a AWS Account
+[If you haven't got a AWS Account already, follow this link on how to create one.](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/)
+
+## IAM Roles
+[Link to instructions on how to create an IAM Role](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/iam-roles-for-amazon-ec2.html)
+
+Ensure the following parameters are the same:
+
+**Page - (Create role)** Select type of trusted entity: AWS service
+
+**Page - (Create role)** Choose the service that will use this role: EC2
+
+**Page - (Attach permissions policies)** Search for "AmazonRDSDataFullAccess", "AmazonRDSFullAccess", "AWSLambdaFullAccess", and make sure the checkbox is highlighted before moving on to next page
+
+**Page - (Add tags)** Key: Name, Value: EC2-Access
+
+**Page - (Review)** Role name: EC2-Permissions
+
+**Page - (Review)** Role description: *Specify a description of your choice*
+
+*Parameters that are not listed here should be kept at the default value*
+
+## EC2 Instance
+[Link to instructions on how to create an EC2 Instance](https://docs.aws.amazon.com/efs/latest/ug/gs-step-one-create-ec2-resources.html)
+
+Ensure the following parameters are the same:
+
+**Page - (Amazon Machine Image (AMI))**: Select the first option
+
+**Page - (Instance type)**: t2.micro
+
+**Page - (Configure Instance Details)** Auto-assign public IP: Enable
+
+**Page - (Configure Instance Details)** IAM role: EC2-Permissions
+
+**Page - (Add Tags)** Key: Name Value: EC2-Instance, *or any name of your liking*
+
+**Configure Security Group** Assign a security group: create a **new** security group, **Security group name:** EC2-CONNECT-APP,   **Security group name:** EC2-CONNECT-APP 
+
+**Configure Security Group** Add new rules, Type: HTTP, MYSQL/Aurora. Source for both: 0.0.0.0/0 
+
+*Parameters that are not listed here should be kept at the default value*
+
+## Creating Database
+[Link to instructions on how to create an RDS DB Instances](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_Tutorials.WebServerDB.CreateDBInstance.html)
+
+Ensure these parameters are the same:
+
+**Engine type:** MySQL
+
+**Version:** MySQL 5.7.26
+
+**Templates:** Free tier
+
+**Settings, DB instance identifier // Master username // Master password:** sqldatabase *or your own choice, ensure to note down 
+these values.*
+
+**Virtual Private Cloud (VPC):** Default VPC
+
+**Additional connectivity configration, Publicly accessible:** No
+
+**VPC security group: Choose existing,** select the pre-made VPC group you created earlier "EC2-CONNECT-APP"
+
+*Parameters that are not listed here should be kept at the default value*
+
+## Lambda Function
+[Link to instructions on how to create a Lambda Function](https://docs.aws.amazon.com/lex/latest/dg/gs-bp-create-lambda-function.html)
+
+You will need to create 3 lambda functions for this application to work
+
+**Lambda Function 1**
+
+**Basic information** Function name: randomprize
+
+**Basic information** Runtime: Python 3.7
+
+Copy and paste the code from the randomprize_lambda.py file into the function code
+
+**Lambda Function 2**
+
+**Basic information** Function name: randomletter
+
+**Basic information** Runtime: Python 3.7
+
+Copy and paste the code from the randomletter_lambda.py file into the function code
+
+**Lambda Function 3**
+
+**Basic information** Function name: randomnumber
+
+**Basic information** Runtime: Python 3.7
+
+Copy and paste the code from the randomnumber_lambda.py file into the function code
+
+*Parameters that are not listed here should be kept at the default value*
+
+## Edit Files
+Rename the config file and remove the *"_sample"* from the file name
+
+Within the config file specify a SECRET KEY which is a string of length 30 that has both numbers and letters
+
+Edit the config file and specify the Database URI: 'mysql+pymysql://[master username]:[master password]@[database endpoint]/[database name]
+
+# EC2 Console
+SSH / Connect to your EC2 Instance
 ### Prerequisites
 Software needed & installation process.
-### Automatic Process
-System Update
-```
-$ sudo apt-get update -y
-```
-Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
-```
-$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
-$ cd Prize-Generator
-```
-Run mysql.sh which consists of all required process needed to be installed
-```
-$ sh mysql.sh
-```
 
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Move into the the Prize-Generator directory
-```
-$ cd Prize-Generator
-$ sudo apt-get install python3 -y
-$ sudo apt-get install python3-pip -y
-$ sudo apt-get install python-virtualenv
-$ python3 -m venv venv
-$ . venv/bin/activate
-$ pip3 install -r requirements.txt
-
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Deploying the application
-
-Run the following command to build the application
-
-```
-$ cd ..
-$ export FLASK_APP=run.py
-$ export FLASK_ENV=development
-$ flask run
-```
-### Viewing the application
-
-Navigate to http://localhost:5000/
-
-# AWS
-### Prerequisites
-Software needed & installation process.
-### Automatic Process
 System Update
 ```
 $ sudo yum update -y
 ```
 Git clone the project repository onto the EC2 Instance & move into the the Prize-Generator directory
 ```
-$ git clone -b solomon https://github.com/lidnelson/Prize-Generator
+$ git clone -b https://github.com/lidnelson/Prize-Generator
 $ cd Prize-Generator
 ```
 Run mysql.sh which consists of all required process needed to be installed
 ```
 $ sh mysql.sh
 ```
-## Deploying the application
+After the shell script file has been launched, reboot the EC2 instance to ensure docker commands can be ran without 'Sudo' command.
+
+.
+.
+.
+
+Create a database called Prizes
+```
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p
+$ MySQL [(none)]> CREATE database Prizes;
+$ MySQL [(none)]> exit;
+```
+Import prize table into the newly created Prizes Database
+```
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p Prize < prizes.sql
+```
+
+### Deploying the application
 
 Run the following command to build the application using docker compose
 ```
@@ -88,7 +158,26 @@ $ docker ps
 ```
 ### Viewing the application
 
-Navigate to http://{{ External IP address }}/
+Obtain the EC2 IPv4 Public IP, copy & paste into your web browser.
+
+### Viewing the database
+
+To view your database, enter the following command into your CLI & enter your password upon request
+```
+$ mysql -h [database endpoint] -P 3306 -u [database name] -p
+```
+Show databases
+```
+$ MySQL [(none)]> show databases;
+```
+Use database
+```
+$ MySQL [(none)]> Use Prizes;
+```
+View entries in database
+```
+$ MySQL [(Prizes)]> SELECT * FROM prizes;
+```
 
 ## Built With
 
@@ -99,4 +188,3 @@ Navigate to http://{{ External IP address }}/
 ## Authors
 
 * **Solomon Bada**
-* **Lydia Nelson**
