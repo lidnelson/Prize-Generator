@@ -195,3 +195,4 @@ $ MySQL [(Prizes)]> SELECT * FROM prizes;
 ## Authors
 
 * **Solomon Bada**
+* **Lydia Nelson**
